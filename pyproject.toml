@@ -3,7 +3,7 @@ name = "taskiq-litestar"
 description = "Taskiq integration with litestar"
 authors = ["Taskiq team <taskiq@no-reply.com>"]
 maintainers = ["Taskiq team <taskiq@no-reply.com>"]
-version = "0.1.0"
+version = "0.1.1"
 readme = "README.md"
 license = "LICENSE"
 classifiers = [
@@ -20,7 +20,7 @@ classifiers = [
     "Topic :: System :: Networking",
     "Development Status :: 3 - Alpha",
 ]
-keywords = ["taskiq", "tasks", "distributed", "async"]
+keywords = ["taskiq", "tasks", "distributed", "async", "litestar"]
 packages = [{ include = "taskiq_litestar" }]
 
 [tool.poetry.dependencies]
