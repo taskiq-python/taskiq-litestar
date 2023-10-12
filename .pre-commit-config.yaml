@@ -39,4 +39,3 @@ repos:
         args:
           - "--fix"
           - "taskiq_litestar"
-          - "tests"
