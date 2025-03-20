@@ -75,13 +75,14 @@ When using InMemoryBroker you can manually update the dependency context.
 This might come handy when setting up tests.
 
 ```python
+from litestar import Litestar
 import taskiq_litestar
 from taskiq import InMemoryBroker
 
 broker = InMemoryBroker()
 
-app = FastAPI()
+app = Litestar()
 
-taskiq_fastapi.init(broker, "test_script:app")
-taskiq_fastapi.populate_dependency_context(broker, app)
+taskiq_litestar.init(broker, "test_script:app")
+taskiq_litestar.populate_dependency_context(broker, app)
 ```
