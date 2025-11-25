@@ -1,26 +1,28 @@
 name: Testing package
 
-on: push
+on:
+  release:
+    types:
+      - released
 
 jobs:
   lint:
     strategy:
       matrix:
-        cmd:
-          - black
-          - mypy
-          - ruff
+        cmd: [ "black", "ruff", "mypy" ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Install poetry
-        run: pipx install poetry
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v5
         with:
-          python-version: "3.11"
-          cache: "poetry"
+          persist-credentials: false
+      - id: setup-uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-suffix: "3.12"
+          version: "latest"
+          python-version: "3.12"
       - name: Install deps
-        run: poetry install
+        run: uv sync --all-extras
       - name: Run lint check
-        run: poetry run pre-commit run -a ${{ matrix.cmd }}
+        run: uv run pre-commit run -a ${{ matrix.cmd }}
